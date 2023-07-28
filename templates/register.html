@@ -1,0 +1,119 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>signup</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;500;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="{% static 'styles/signup.css' %}">
+        <style>
+            .sign-up{
+                padding: 10px 25px;
+                font-size:medium;
+                margin-left: 5px;
+                color: rgb(104, 221, 83);
+                border-radius: 20px;
+                border-color:rgb(104, 221, 83) ;
+                background-color: white;
+                transition: background-color 0.15s,color 0.15s;
+                border: 2px;
+                border-style: solid;
+            }
+            .sign-up:hover{
+                border: 2px;
+    border-style: solid;
+    border-color: white;
+    background-color: rgb(104, 221, 83);
+    color: white;
+    cursor: pointer;
+            }
+        </style>
+    </head>
+    <body style="font-family:Roboto ;
+    margin: 0;
+    padding: 0;
+    background-color: rgb(223, 239, 231);
+    overflow: hidden;
+    height: 100vh;
+    position: relative;">
+        <div style="display: flex; flex-direction:row;background-color:rgba(243, 55, 55, 0.808);">
+            <div style="display:flex; position:relative; margin-left:30px;color:white">
+                {% for message in messages %}
+                <h4 style="font-family:Roboto,Arial, Helvetica, sans-serif">{{message}}</h4>
+                {% endfor %}
+            </div>
+        </div>
+        <form style="top: 75px;
+        left: 35%;
+        background-color: rgb(255, 255, 255);
+        border-radius: 40px;
+        box-shadow: 0 14px 28px rgba(25, 25, 25, 0.25),
+    0 10px 10px rgba(30, 30, 30, 0.22);
+        position: absolute;
+        width: 400px;
+        height: 530px;
+        flex-shrink: 0;" action="register" method="post">
+            {% csrf_token %}
+            <div style="display: flex;
+            flex-direction: column;
+            align-items: center;">
+                <p style="font-size: 50px;font-weight: bold;margin-top: 20px;">Signup</p><br>
+                <div><input type="text" name="fname" id="fname" placeholder="First Name" style="width: 140px;
+                border: none;
+                border-bottom-color: rgb(104, 221, 83);
+                border-bottom-width: 2px;
+                border-bottom-style: solid;
+                outline: 0;" 
+                 oninvalid="this.setCustomValidity('First name should only contain alphabets.')" oninput="this.setCustomValidity('')" pattern="[A-Za-z]+"required>
+                <input type="text" name="lname" id="lname" placeholder="Last Name" style="width: 140px;
+                border: none;
+                border-bottom-color: rgb(104, 221, 83);
+                border-bottom-width: 2px;
+                border-bottom-style: solid;margin-left: 10px;
+                outline: 0;" oninvalid="this.setCustomValidity('Last nameshould only contain alphabets.')"oninput="this.setCustomValidity('')" pattern="[A-Za-z]+" required></div><br>
+                <input type="text" name="uname" id="uname" placeholder="Username" style="width: 300px;
+                border: none;
+                border-bottom-color: rgb(104, 221, 83);
+                border-bottom-width: 2px;
+                border-bottom-style: solid;
+                outline: 0;" oninvalid="this.setCustomValidity('Enter username to register.')" oninput="this.setCustomValidity('')" pattern="[A-Za-z0-9]*" required><br>
+                <input type="email" name="emailid" id="emailid" placeholder="email" style="width: 300px;
+                border: none;
+                border-bottom-color: rgb(104, 221, 83);
+                border-bottom-width: 2px;
+                border-bottom-style: solid;
+                outline: 0;" required ><br>                    
+                <div style="width: 304px;
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                border: none;
+                border-bottom-color: rgb(104, 221, 83);
+                border-bottom-width: 2px;
+                border-bottom-style: solid;
+                position: relative;">
+                    <input type="password" name="password" id="password" placeholder="password" style="border: none;
+                    outline: 0;
+                    flex: 1;" oninvalid="this.setCustomValidity('Password should contain speacial characters and should be alphanumeric.')" oninput="this.setCustomValidity('')" pattern="(?=.*\d)(?=.*[\W_]).{7,16}" required><br>
+                </div><br>
+                <div style="width: 304px;
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                border: none;
+                border-bottom-color: rgb(104, 221, 83);
+                border-bottom-width: 2px;
+                border-bottom-style: solid;
+                position: relative;">
+                <input type="password" name="cpassword" id="cpassword" placeholder="confirm password" style="border: none;
+                outline: 0;
+                flex: 1;" required oninvalid="this.setCustomValidity('Enter password to confirm.')" oninput="this.setCustomValidity('')"></div><br><br>
+                <button type="submit" value="Register" id="register" class="sign-up">Register</button> <br>                  
+                <p style="font-size: 13px;font-weight: bold;color: rgb(104, 221, 83); "hover="cursor:pointer">Already have an account? <a href="login" style="font-size: 13px;font-weight: bold;color: rgb(104, 221, 83);">Login</a></p>
+            </div>            
+        </form>
+    </body>
+</html>

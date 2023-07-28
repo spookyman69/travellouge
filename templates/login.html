@@ -1,0 +1,39 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Login</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;500;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="{% static 'styles/login.css' %}">
+    </head>
+    <body>
+        <div style="display: flex; flex-direction:row;background-color:rgba(243, 55, 55, 0.808);">
+            <div style="display:flex; position:relative; margin-left:30px;color:white">
+                {% for message in messages %}
+                <h4 style="font-family:Roboto,Arial, Helvetica, sans-serif">{{message}}</h4>
+                {% endfor %}
+            </div>
+        </div>
+        <form class="form" action="login" method="post">
+            {% csrf_token %}
+            <div class="login">
+                <p style="font-size: 50px;font-weight: bold;">Login</p><br>
+                <input type="text" id="username" name="username" placeholder="Username" class="username" required oninvalid="this.setCustomValidity('Enter username to login.')"
+                oninput="this.setCustomValidity('')"><br>
+                <div class="password-block">
+                    <input type="password" id="password" name="password" placeholder="password" class="password" required oninvalid="this.setCustomValidity('Enter your Password to login.')"
+                    oninput="this.setCustomValidity('')" ><br>
+                </div><br><br>
+                <br>
+                <div>
+                    <input type="submit" id="login" value="Login" class="login-button">
+                </div><br>
+                <p style="font-size: 13px;font-weight: bold;color: rgb(104, 221, 83);">Don't have an account?<a href="register"><input type="button" value="Sign Up" class="sign-up"></a></p>
+            </div>
+        </form>
+    </body>
+</html>
